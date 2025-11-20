@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amber Smith Blog</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background: #e3e6d9;
+      color: #333;
+    }
+
+    /* HEADER */
+    header {
+      background: #ffffff;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #6b6f57;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-top: -8px;
+      color: #777;
+      font-style: italic;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #444;
+      font-size: 14px;
+    }
+
+    /* HAMBURGER (hidden on desktop) */
+    #nav-toggle { display: none; }
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px 10px;
+    }
+
+    /* HERO IMAGE */
+    .hero {
+      width: 100%;
+      height: 350px;
+      background: url('https://images.unsplash.com/photo-1763284098096-85d5d31e55dd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover;
+      position: relative;
+    }
+
+    /* INTRO BOX (sits above / overlapping the hero) */
+    .intro {
+      background: #d8e2a6;
+      max-width: 650px;
+      margin: -140px auto 50px; /* pull the box up so it sits above the hero */
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      position: relative;
+      z-index: 2;
+      border-radius: 8px;
+    }
+
+    .intro button {
+      padding: 12px 25px;
+      background: #d3bc8e;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* CATEGORY GRID */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 0;
+    }
+
+    .category {
+      width: 260px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .planner {
+      background: #e8c8a0;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .planner input {
+      padding: 12px;
+      margin: 5px;
+      width: 220px;
+    }
+
+    .planner button {
+      padding: 12px 28px;
+      background: #6b6f57;
+      border: none;
+      color: white;
+    }
+
+    /* POSTS */
+    .posts {
+      max-width: 1100px;
+      margin: 60px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .post {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .post img {
+      width: 50%;
+      border-radius: 5px;
+    }
+
+    .post-box {
+      background: #f3f0e7;
+      padding: 30px;
+      width: 50%;
+    }
+
+    .post button {
+      padding: 10px 22px;
+      background: #9caf92;
+      border: none;
+      margin-top: 10px;
+    }
+
+    /* POPULAR POSTS */
+    .popular {
+      padding: 60px;
+      background: #6b6f57;
+      text-align: center;
+      color: rgb(255, 255, 255);
+    }
+
+    .popular-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .popular-item {
+      width: 260px;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .popular-item span {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.85);
+      padding: 8px 12px;
+      color: #333;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 50px;
+      background: #e8c8a0;
+      text-align: center;
+    }
+
+    footer input {
+      padding: 12px;
+      width: 220px;
+      margin: 5px;
+    }
+
+    footer button {
+      padding: 12px 25px;
+      background: #6b6f57;
+      color: white;
+      border: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px 16px;
+      }
+
+      .hamburger {
+        display: block;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      /* show nav when checkbox is checked */
+      #nav-toggle:checked ~ nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 0;
+        width: 100%;
+      }
+
+      nav a {
+        padding: 10px 16px;
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 1px solid rgba(0,0,0,0.05);
+      }
+
+      .hero {
+        height: 220px;
+      }
+
+      .intro { margin: -80px 16px 30px; padding: 24px; }
+      .intro h2 { font-size: 20px; }
+      .intro p { font-size: 14px; }
+      .intro button { width: 100%; display: block; }
+
+      .categories { flex-direction: column; align-items: center; padding: 24px 0; }
+      .category { width: 92%; height: 140px; font-size: 22px; }
+
+      .planner { padding: 28px; }
+      .planner input { width: 100%; box-sizing: border-box; margin: 6px 0; }
+      .planner button { width: 100%; }
+
+      .post { flex-direction: column; }
+      .post img, .post-box { width: 100%; }
+      .post-box { padding: 20px; }
+
+      .popular-grid { flex-direction: column; align-items: center; }
+      .popular-item { width: 92%; height: 140px; }
+
+      footer { padding: 28px; }
+      footer input { width: 100%; box-sizing: border-box; margin: 6px 0; }
+      footer button { width: 100%; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">Amber Smith</div>
+    <div class="subtitle">Beauty, Travel, Lifestyle</div>
+  </div>
+
+  <!-- simple accessible checkbox hamburger -->
+  <input id="nav-toggle" type="checkbox" />
+  <label class="hamburger" for="nav-toggle" aria-hidden="true">☰</label>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Shop My Insta</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<div class="hero"></div>
+
+<div class="intro">
+  <h2>Introduction Goes Here</h2>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  <button>READ MORE</button>
+</div>
+
+<div class="categories">
+  <div class="category" style="background-image:url('https://images.unsplash.com/photo-1508138221679-760a23a2285b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fHww');">Travel</div>
+  <div class="category" style="background-image:url('https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">Lifestyle</div>
+  <div class="category" style="background-image:url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">Home</div>
+</div>
+
+<div class="planner">
+  <h2>Download My Monthly Planner</h2>
+  <input type="text" placeholder="Full Name">
+  <input type="email" placeholder="Email Address">
+  <button>Subscribe</button>
+</div>
+
+<div class="posts">
+  <div class="post">
+    <img src="https://images.unsplash.com/photo-1466838931486-92f3b5ff31a6?q=80&w=1329&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+    <div class="post-box">
+      <h3>Lorem ipsum dolor sit amet</h3>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <button>READ MORE</button>
+    </div>
+  </div>
+
+  <div class="post">
+    <div class="post-box">
+      <h3>Lorem ipsum dolor sit amet</h3>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <button>READ MORE</button>
+    </div>
+    <img src="https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+  </div>
+
+  <div class="post">
+    <img src="https://images.unsplash.com/photo-1553305666-8320efdb9f20?q=80&w=1360&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+    <div class="post-box">
+      <h3>Lorem ipsum dolor sit amet</h3>
+      <p>Lorem ipsum dolor sit amet consectetur.</p>
+      <button>READ MORE</button>
+    </div>
+  </div>
+</div>
+
+<div class="popular">
+  <h2>Popular Posts</h2>
+  <div class="popular-grid">
+    <div class="popular-item" style="background-image:url('https://images.unsplash.com/photo-1515339760107-1952b7a08454?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"><span>Lorem ipsum</span></div>
+    <div class="popular-item" style="background-image:url('https://images.unsplash.com/photo-1762532985216-6561bb733c56?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"><span>Lorem ipsum</span></div>
+  </div>
+</div>
+
+<footer>
+  <h2>Get The Latest</h2>
+  <input type="text" placeholder="Full Name">
+  <input type="email" placeholder="Email Address">
+  <button>Subscribe</button>
+</footer>
+
+</body>
+</html>
